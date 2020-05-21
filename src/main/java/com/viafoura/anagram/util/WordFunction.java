@@ -1,3 +1,5 @@
+package com.viafoura.anagram.util;
+
 import java.util.Arrays;
 
 public class WordFunction {
