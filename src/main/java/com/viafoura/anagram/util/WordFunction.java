@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class WordFunction {
 
-    public static boolean isAnagrams(String word1, String word2) {
+    public static boolean isAnagram(String word1, String word2) {
         word1 = format(word1);
         word2 = format(word2);
 
