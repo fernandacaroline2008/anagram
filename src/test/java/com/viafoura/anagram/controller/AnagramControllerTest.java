@@ -22,9 +22,7 @@ public class AnagramControllerTest {
 
     @Test
     public void isAnagrams_whenStringsAreAnagrams_returnSuccess() throws Exception {
-        String string1 = "cinema";
-        String string2 = "iceman";
-        String uri = ANAGRAM_URI + "/" + string1 + "/" + string2;
+        String uri = String.format("%s/%s/%s", ANAGRAM_URI, "cinema", "iceman");
 
         AnagramDto responseExpected = new AnagramDto(true);
 
@@ -35,9 +33,7 @@ public class AnagramControllerTest {
 
     @Test
     public void isAnagrams_whenStringsAreNotAnagrams_returnSuccess() throws Exception {
-        String string1 = "car";
-        String string2 = "art";
-        String uri = ANAGRAM_URI + "/" + string1 + "/" + string2;
+        String uri = String.format("%s/%s/%s", ANAGRAM_URI, "car", "art");
 
         AnagramDto responseExpected = new AnagramDto(false);
 
@@ -48,9 +44,7 @@ public class AnagramControllerTest {
 
     @Test
     public void isAnagrams_whenStringsAreNotValid_returnError() throws Exception {
-        String string1 = "cinema";
-        String string2 = "iceman4";
-        String uri = ANAGRAM_URI + "/" + string1 + "/" + string2;
+        String uri = String.format("%s/%s/%s", ANAGRAM_URI, "cinema", "iceman4");
 
         mockMvc.perform(get(uri))
                .andExpect(status().isBadRequest());
