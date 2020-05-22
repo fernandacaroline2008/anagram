@@ -26,18 +26,22 @@ cinema, formed from iceman.
 
 ## Install dependencies
 
+To build the server 
+
 ```sh
 $ mvn clean install
+```
 
+```sh
+$ docker build -t anagram .
 ```
 
 ## Running Application
 
-To build and start the server 
+To start the server 
 
 ```sh
-$ mvn clean spring-boot:run
-
+$ docker run -p 8080:8080 anagram
 ```
 ## Using Api
 
