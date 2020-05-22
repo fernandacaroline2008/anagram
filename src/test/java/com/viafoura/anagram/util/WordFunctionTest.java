@@ -2,6 +2,12 @@ package com.viafoura.anagram.util;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -43,5 +49,15 @@ public class WordFunctionTest {
         String word1 = "car";
         String word2 = "art";
         assertFalse(WordFunction.isAnagram(word1, word2));
+    }
+
+    @Test
+    public void getAnagrams_shouldReturnListOfAnagrams() {
+        String word = "abc";
+        Set<String> anagramsExpected = new HashSet<>(Arrays.asList("abc", "acb", "bac", "bca", "cab", "cba"));
+
+        Set<String> anagrams = WordFunction.getAnagrams(word);
+
+        assertThat(anagrams, is(anagramsExpected));
     }
 }

@@ -17,7 +17,7 @@ import java.util.Set;
 public class AnagramController {
 
     @GetMapping("{string1}/{string2}")
-    public ResponseEntity<AnagramDto> isAnagrams(@PathVariable("string1") String string1, @PathVariable("string2") String string2) {
+    public ResponseEntity<AnagramDto> isAnagram(@PathVariable("string1") String string1, @PathVariable("string2") String string2) {
         if (!isStringValid(string1) || !isStringValid(string2)) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
@@ -27,13 +27,13 @@ public class AnagramController {
         return new ResponseEntity(new AnagramDto(isAnagram), HttpStatus.OK);
     }
 
-    @GetMapping("{string1}")
-    public ResponseEntity<AnagramListDto> getAnagrams(@PathVariable("string1") String string1) {
-        if (!isStringValid(string1)) {
+    @GetMapping("{string}")
+    public ResponseEntity<AnagramListDto> getAnagrams(@PathVariable("string") String string) {
+        if (!isStringValid(string)) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
 
-        Set<String> anagrams = null;
+        Set<String> anagrams = WordFunction.getAnagrams(string);
 
         return new ResponseEntity(new AnagramListDto(anagrams), HttpStatus.OK);
     }

@@ -1,6 +1,8 @@
 package com.viafoura.anagram.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class WordFunction {
 
@@ -20,6 +22,31 @@ public class WordFunction {
         String word2Sorted = sort(word2);
 
         return word1Sorted.equals(word2Sorted);
+    }
+
+    public static Set<String> getAnagrams(String word) {
+        word = format(word);
+
+        Set<String> anagrams = new HashSet<>();
+        permutation("", word, anagrams);
+
+        return anagrams;
+    }
+
+    private static Set<String> permutation(String prefix, String string, Set<String> anagrams) {
+        if (string.length() == 0) {
+            anagrams.add(prefix);
+            return anagrams;
+        }
+
+        for (int i = 0; i < string.length(); i++) {
+            String newPrefix = prefix + string.charAt(i);
+            String newString = string.substring(0, i) + string.substring(i + 1, string.length());
+
+            permutation(newPrefix, newString, anagrams);
+        }
+
+        return anagrams;
     }
 
     private static String format(String word) {
